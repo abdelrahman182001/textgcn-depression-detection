@@ -1,0 +1,17 @@
+# Environments
+miniconda3/
+env/
+venv/
+.conda/
+
+# Data and Models
+data/
+*.csv
+*.pt
+*.h5
+*.model
+
+# Python Cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
