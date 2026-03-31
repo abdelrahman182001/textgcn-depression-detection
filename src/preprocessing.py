@@ -21,16 +21,13 @@ def clean_text(text: str) -> str:
     # 4. Remove HTML tags (like <br>)
     text = re.sub(r'<.*?>', '', text)
     
-    # 5. Remove standard punctuation BUT carefully preserve emojis.
-    # The regex [^\w\s\p{Emoji}] would be ideal, but for standard Python `re`,
-    # we keep standard text, spaces, and all non-ASCII characters (which includes emojis).
-    # We strip basic English punctuation (. , ! ?) that doesn't form emoticons.
-    text = re.sub(r'[#$%\^&\*()\[\]{};:"|<>\\]', '', text) 
+    # 5. REMOVED the aggressive punctuation stripper. 
+    # MentalBERT's tokenizer handles punctuation and emoticons perfectly.
     
     # 6. Remove extra whitespace/tabs/newlines
     text = re.sub(r'\s+', ' ', text).strip()
     
-    return text
+    return text 
 
 def load_and_clean_data(file_path: str) -> pd.DataFrame:
     """
