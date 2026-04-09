@@ -13,7 +13,7 @@ def masked_loss(y_true, y_pred, mask):
     # 1. Define the Penalty Multipliers
     # Class 0 (Non-Depressed) = 1.0 standard penalty
     # Class 1 (Depressed) = 8.0 penalty to handle imbalance
-    class_weights = tf.constant([1.0, 8.0], dtype=tf.float32)
+    class_weights = tf.constant([1.0, 5.0], dtype=tf.float32)
 
     # 2. Calculate the standard cross-entropy error
     loss = tf.keras.losses.categorical_crossentropy(y_true, y_pred)
@@ -126,7 +126,7 @@ def main():
     with tf.device('/CPU:0'):
         # Initialize Model & Optimizer INSIDE the CPU block
         model = TextGCNModel(num_classes=2, hidden_dim=200, dropout_rate=0.5)
-        optimizer = tf.keras.optimizers.Adam(learning_rate=0.02) # Paper baseline [cite: 398]
+        optimizer = tf.keras.optimizers.Adam(learning_rate=0.001) # Paper baseline [cite: 398]
         
         checkpoint_dir = "../checkpoints"
         os.makedirs(checkpoint_dir, exist_ok=True)
@@ -134,7 +134,7 @@ def main():
 
         epochs = 200 # Paper duration [cite: 396]
         best_test_acc = 0.0
-        patience = 10 # Paper early stopping [cite: 396]
+        patience = 30 # Paper early stopping [cite: 396]
         patience_counter = 0
         
         for epoch in range(epochs):
