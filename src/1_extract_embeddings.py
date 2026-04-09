@@ -8,13 +8,14 @@ def main():
     print("=== STEP 1: Offline Feature Extraction ===")
     
     # 1. Load the dataset
-    data_path = "../data/twitter_English.csv"
+    data_path = "../data/dataset2_twitter_English.csv"
     print(f"Loading data from {data_path}...")
     df = load_and_clean_data(data_path)
     
     # 2. Extract Embeddings
-    print("\nFiring up MentalBERT...")
-    embedder = EmotionEmbedder(model_name="mental/mental-bert-base-uncased")
+    print("\nFiring up RobertaDepressionDetection...")
+    # --- THIS IS THE FIX. IT MUST SAY paulagarciaserrano ---
+    embedder = EmotionEmbedder(model_name="paulagarciaserrano/roberta-depression-detection")
     embedded_df = embedder.process_dataset(df)
     
     # 3. Extract the raw math (The X Matrix for documents)
@@ -31,7 +32,7 @@ def main():
     
     print(f"\n[SUCCESS] Document embeddings saved to: {save_path}")
     print(f"Final Matrix Shape: {doc_features.shape}")
-    print("Your GPU is now safe. You never have to run MentalBERT on this specific data again!")
+    print("Your GPU is now safe. You never have to run RobertaDepressionDetection on this specific data again!")
 
 if __name__ == "__main__":
     main()

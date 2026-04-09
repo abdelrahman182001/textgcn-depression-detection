@@ -56,7 +56,7 @@ def main():
     # ---------------------------------------------------------
     
     # 2. Extract Real Labels from the CSV
-    csv_path = "../data/twitter_English.csv" 
+    csv_path = "../data/dataset2_twitter_English.csv" 
     print(f"Extracting true labels from {csv_path}...")
     
     # We pass it through the cleaner to guarantee the rows match our graph 1-to-1
